@@ -20,7 +20,9 @@ class MainAdapter(private val result: ArrayList<Hero>,
                 Glide.with(superheroImage.context)
                     .load(hero.image.md)
                     .into(superheroImage)
+                
                 superheroName.setOnClickListener { clickListener(hero.id) }
+                superheroImage.setOnClickListener { clickListener(hero.id) }
             }
         }
     }

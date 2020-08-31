@@ -10,6 +10,7 @@ import com.carol.musyoka.superhero.R
 import com.carol.musyoka.superhero.data.api.ApiHelper
 import com.carol.musyoka.superhero.data.api.RetrofitBuilder
 import com.carol.musyoka.superhero.data.model.Hero
+import com.carol.musyoka.superhero.ui.main.DefaultItemDecorator
 import com.carol.musyoka.superhero.ui.main.adapter.MainAdapter
 import com.carol.musyoka.superhero.ui.main.viewmodel.MainViewModel
 import com.carol.musyoka.superhero.ui.main.viewmodel.ViewModelFactory
@@ -39,7 +40,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupUI() {
-
+        superhero_recycler.addItemDecoration(DefaultItemDecorator(4, 6))
         superhero_recycler.apply {
             setHasFixedSize(true)
             layoutManager = GridLayoutManager(this@MainActivity,2)

@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity() {
             setHasFixedSize(true)
             layoutManager = GridLayoutManager(this@MainActivity,2)
         }
-        val heroId = intent?.getLongExtra(HERO_ID,-1)
+        intent?.getLongExtra(HERO_ID,-1)
         adapter = MainAdapter(arrayListOf()){heroId ->
             val intent = Intent(this,SuperheroDetails::class.java)
             intent.putExtra(HERO_ID,heroId)

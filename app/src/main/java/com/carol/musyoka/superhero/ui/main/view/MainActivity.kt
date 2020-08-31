@@ -1,5 +1,6 @@
 package com.carol.musyoka.superhero.ui.main.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -10,12 +11,16 @@ import com.carol.musyoka.superhero.R
 import com.carol.musyoka.superhero.data.api.ApiHelper
 import com.carol.musyoka.superhero.data.api.RetrofitBuilder
 import com.carol.musyoka.superhero.data.model.Hero
+import com.carol.musyoka.superhero.ui.detail.SuperheroDetails
 import com.carol.musyoka.superhero.ui.main.DefaultItemDecorator
 import com.carol.musyoka.superhero.ui.main.adapter.MainAdapter
 import com.carol.musyoka.superhero.ui.main.viewmodel.MainViewModel
 import com.carol.musyoka.superhero.ui.main.viewmodel.ViewModelFactory
 import com.carol.musyoka.superhero.utils.Status
 import kotlinx.android.synthetic.main.activity_main.*
+
+   const val HERO_ID = "HERO_ID"
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -45,7 +50,12 @@ class MainActivity : AppCompatActivity() {
             setHasFixedSize(true)
             layoutManager = GridLayoutManager(this@MainActivity,2)
         }
-        adapter = MainAdapter(arrayListOf())
+        val heroId = intent?.getLongExtra(HERO_ID,-1)
+        adapter = MainAdapter(arrayListOf()){heroId ->
+            val intent = Intent(this,SuperheroDetails::class.java)
+            intent.putExtra(HERO_ID,heroId)
+            startActivity(intent)
+        }
         superhero_recycler.adapter = adapter
     }
 

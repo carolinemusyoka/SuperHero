@@ -9,15 +9,18 @@ import com.carol.musyoka.superhero.R
 import com.carol.musyoka.superhero.data.model.Hero
 import kotlinx.android.synthetic.main.item_superhero.view.*
 
-class MainAdapter(private val result: ArrayList<Hero>): RecyclerView.Adapter<MainAdapter.DataViewHolder>() {
+class MainAdapter(private val result: ArrayList<Hero>,
+                  private val clickListener: (Long) -> Unit):
+    RecyclerView.Adapter<MainAdapter.DataViewHolder>() {
     class DataViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        fun bind(hero: Hero) {
+        fun bind(hero: Hero, clickListener: (Long) -> Unit ) {
             itemView.apply {
                 superheroName.text = hero.name
                 Glide.with(superheroImage.context)
                     .load(hero.image.md)
                     .into(superheroImage)
+                superheroName.setOnClickListener { clickListener(hero.id) }
             }
         }
     }
@@ -28,7 +31,7 @@ class MainAdapter(private val result: ArrayList<Hero>): RecyclerView.Adapter<Mai
     override fun getItemCount(): Int = result.size
 
     override fun onBindViewHolder(holder: DataViewHolder, position: Int) {
-        holder.bind(result[position])
+        holder.bind(result[position],clickListener)
     }
 
     fun addSuperHeroes(hero: List<Hero>) {

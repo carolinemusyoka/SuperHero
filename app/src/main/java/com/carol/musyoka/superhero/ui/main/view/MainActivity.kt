@@ -1,10 +1,14 @@
 package com.carol.musyoka.superhero.ui.main.view
 
+import android.app.SearchManager
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
 import com.carol.musyoka.superhero.R
@@ -36,6 +40,8 @@ class MainActivity : AppCompatActivity() {
         setupUI()
         setupObservers()
     }
+
+
 
     private fun setupViewModel() {
         viewModel = ViewModelProviders.of(
@@ -88,6 +94,16 @@ class MainActivity : AppCompatActivity() {
             addSuperHeroes(hero)
             notifyDataSetChanged()
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.options_menu, menu)
+
+        val searchItem = menu.findItem(R.id.search)
+        val searchView = searchItem?.actionView as SearchView
+
+
+        return true
     }
 
 }

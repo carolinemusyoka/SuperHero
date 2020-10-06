@@ -18,11 +18,11 @@ class MainAdapter(private val result: ArrayList<Hero>,
             itemView.apply {
                 superheroName.text = hero.name
                 Glide.with(superheroImage.context)
-                    .load(hero.image.md)
+                    .load(hero.image.lg)
                     .into(superheroImage)
 
-                superheroName.setOnClickListener { clickListener(hero.id) }
-                superheroImage.setOnClickListener { clickListener(hero.id) }
+        //        superheroName.setOnClickListener { clickListener(hero.id) }
+              //  superheroImage.setOnClickListener { clickListener(hero.id) }
             }
         }
     }

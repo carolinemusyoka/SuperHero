@@ -95,15 +95,6 @@ class MainActivity : AppCompatActivity() {
             notifyDataSetChanged()
         }
     }
-
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.options_menu, menu)
-
-        val searchItem = menu.findItem(R.id.search)
-        val searchView = searchItem?.actionView as SearchView
-
-
-        return true
     }
 
-}
+
